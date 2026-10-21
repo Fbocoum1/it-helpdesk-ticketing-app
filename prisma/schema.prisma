@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Ticket {
+  id             Int      @id @default(autoincrement())
+  title          String
+  description    String
+  requesterEmail String
+  category       String   @default("Other")
+  priority       String   @default("Medium")
+  status         String   @default("Open")
+  assignedTo     String   @default("Unassigned")
+  aiDraftReply   String?
+  aiReasoning    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
